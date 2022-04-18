@@ -13,6 +13,8 @@ class('ScreenLoader').extends(Object)
 	
 	function ScreenLoader:loadOpeningScreen()
 		
+		gameState["currentScreen"] = "openingScreen"
+		
 		-- load opening screen background --
 		loadBackgroundImage("opening_screen")
 		
@@ -20,23 +22,27 @@ class('ScreenLoader').extends(Object)
 		local pressAnyButtonSprite = nil
 		local pressAnyButtonImage = gfx.image.new("images/sprites/press_any_button.png")
 		local showPressAnyButtonSprite = true
-		--local keyTimer = nil
+		
 		pressAnyButtonSprite = gfx.sprite.new(pressAnyButtonImage)
 		pressAnyButtonSprite:moveTo(200, 200)
 		pressAnyButtonSprite:add()
 		
-		--function flashText()
-		--	if showPressAnyButtonSprite == true then
-		--		pressAnyButtonSprite:remove()
-		--		showPressAnyButtonSprite = false
-		--	else
-		--		pressAnyButtonSprite:add()
-		--		showPressAnyButtonSprite = true
-		--	end
-		--end
-		-- flash 'press any button' on and off using a timer callback
-		--keyTimer = playdate.timer.keyRepeatTimer(500, 500, flashText)
+		-- Add a timer to the press any button sprite --
+		-- so that text can flash on and off. --
+		local keyTimer = nil
+		local function flashText()
+			if showPressAnyButtonSprite == true then
+				pressAnyButtonSprite:remove()
+				showPressAnyButtonSprite = false
+			else
+				pressAnyButtonSprite:add()
+				showPressAnyButtonSprite = true
+			end
+		end
 		
+		--flash 'press any button' on and off using a timer callback
+		keyTimer = playdate.timer.new(500, flashText)
+		keyTimer.repeats = true
 		
 	end
 	
