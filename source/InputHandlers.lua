@@ -2,13 +2,14 @@
 -- The ScreenLoader will be responsible for popping and pushing the correct handlers as
 -- each screen should have different handlers for different purposes. --
 
-
 gameInputHandlers = {
 
 	AButtonDown = function()
 	
 		if gameState["currentScreen"] == "openingScreen" then
-			print("Button Pressed. Go Next Screen")
+			numPlayersScreen.load()
+		elseif gameState["currentScreen"] == "numPlayersScreen" then
+			chooseMinigameScreen.load()
 		end
 	end,
 	
@@ -21,7 +22,11 @@ gameInputHandlers = {
 	BButtonDown = function()
 	
 		if gameState["currentScreen"] == "openingScreen" then
-			print("Button Pressed. Go Next Screen")
+			numPlayersScreen.load()
+		elseif gameState["currentScreen"] == "numPlayersScreen" then
+			openingScreen.load()
+		elseif gameState["currentScreen"] == "chooseMinigameScreen" then
+			numPlayersScreen.load()
 		end
 	end,
 	
@@ -34,7 +39,7 @@ gameInputHandlers = {
 	downButtonDown = function()
 		
 		if gameState["currentScreen"] == "openingScreen" then
-			print("Button Pressed. Go Next Screen")
+			numPlayersScreen.load()
 		end
 	end,
 	
@@ -44,7 +49,7 @@ gameInputHandlers = {
 	leftButtonDown = function()
 	
 		if gameState["currentScreen"] == "openingScreen" then
-			print("Button Pressed. Go Next Screen")
+			numPlayersScreen.load()
 		end
 	end,
 	
@@ -54,7 +59,7 @@ gameInputHandlers = {
 	rightButtonDown = function()
 	
 		if gameState["currentScreen"] == "openingScreen" then
-			print("Button Pressed. Go Next Screen")
+			numPlayersScreen.load()
 		end
 	end,
 	
@@ -64,7 +69,7 @@ gameInputHandlers = {
 	upButtonDown = function()
 	
 		if gameState["currentScreen"] == "openingScreen" then
-			print("Button Pressed. Go Next Screen")
+			numPlayersScreen.load()
 		end
 	end,
 	

@@ -7,23 +7,31 @@ import "CoreLibs/object"
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
-import "ScreenLoader"
 import "InputHandlers"
+import "OpeningScreen"
+import "NumPlayersScreen"
+import "ChooseMinigameScreen"
 
 -- GLOBAL VARIABLES --
 -- Try and limit how many global variables we have if possible. Not sure how
 -- easy that will be with Lua.
 gfx = playdate.graphics
 gameState = {}
+openingScreen = OpeningScreen()
+numPlayersScreen = NumPlayersScreen()
+chooseMinigameScreen = ChooseMinigameScreen()
+
 
 -- Anything that you need to do to initialize the game should be done here. This will be the first function that runs in the game.
 function initializeGame()
 
--- push input handlers onto stack --
+-- init game state variables here --
+gameState["numPlayers"] = 1
+
+-- register the main input handler with the system --
 playdate.inputHandlers.push(gameInputHandlers)
 
-local screenLoader = ScreenLoader() -- grab an instant of screenloader to help navigate between screens
-screenLoader.loadOpeningScreen()
+openingScreen.load()
 
 end
 
