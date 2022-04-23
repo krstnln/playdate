@@ -1,0 +1,7 @@
+This file details what will be in gameState table throughout the game.
+
+index			description
+--------------------    ------------------------------------------------------------------------------
+numPlayers	    	(integer) The number of players that would like to play the game.
+
+currentScreen		(string) The name of the screen that the user currently sees.

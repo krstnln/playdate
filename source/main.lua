@@ -7,16 +7,17 @@ import "CoreLibs/object"
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
-import "InputHandlers"
-import "OpeningScreen"
-import "NumPlayersScreen"
-import "ChooseMinigameScreen"
+import "Screens/OpeningScreen/OpeningScreen"
+import "Screens/NumPlayersScreen/NumPlayersScreen"
+import "Screens/ChooseMinigameScreen/ChooseMinigameScreen"
 
 -- GLOBAL VARIABLES --
 -- Try and limit how many global variables we have if possible. Not sure how
 -- easy that will be with Lua.
 gfx = playdate.graphics
-gameState = {}
+gameState = {} -- a table that stores all of the gamestate variables. See gamestate_desc.txt for details on all variables within the state
+
+-- Each screen within the game will be declared as a global here. --
 openingScreen = OpeningScreen()
 numPlayersScreen = NumPlayersScreen()
 chooseMinigameScreen = ChooseMinigameScreen()
@@ -28,10 +29,7 @@ function initializeGame()
 -- init game state variables here --
 gameState["numPlayers"] = 1
 
--- register the main input handler with the system --
-playdate.inputHandlers.push(gameInputHandlers)
-
-openingScreen.load()
+openingScreen.load() -- start by loading the opening screen
 
 end
 
@@ -45,7 +43,12 @@ initializeGame()
 -- This function executes before each frame refresh
 function playdate.update()
 
+	-- boiler plate update functions --
 	gfx.sprite.update()
 	playdate.timer.updateTimers()
 	
+	-- SCREEN UPDATES (only the active screen's update method will run) --
+	openingScreen.update()
+	numPlayersScreen.update()
+	chooseMinigameScreen.update()
 end
