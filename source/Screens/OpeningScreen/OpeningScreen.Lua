@@ -39,7 +39,7 @@ class('OpeningScreen').extends(Screen)
 		--flash 'press any button' on and off using a timer callback
 		keyTimer = playdate.timer.new(500, flashText)
 		keyTimer.repeats = true
-		
+	
 	end
 	
 	function OpeningScreen:update()

@@ -10,6 +10,7 @@ import "CoreLibs/timer"
 import "Screens/OpeningScreen/OpeningScreen"
 import "Screens/NumPlayersScreen/NumPlayersScreen"
 import "Screens/ChooseMinigameScreen/ChooseMinigameScreen"
+import "Screens/Minigames/CrankaboomScreen"
 
 -- GLOBAL VARIABLES --
 -- Try and limit how many global variables we have if possible. Not sure how
@@ -21,13 +22,15 @@ gameState = {} -- a table that stores all of the gamestate variables. See gamest
 openingScreen = OpeningScreen()
 numPlayersScreen = NumPlayersScreen()
 chooseMinigameScreen = ChooseMinigameScreen()
+crankaboomScreen = CrankaboomScreen()
 
 
 -- Anything that you need to do to initialize the game should be done here. This will be the first function that runs in the game.
 function initializeGame()
 
 -- init game state variables here --
-gameState["numPlayers"] = 1
+gameState["numPlayers"] = 2
+gameState["minigameIndex"] = 1
 
 openingScreen.load() -- start by loading the opening screen
 
@@ -48,7 +51,8 @@ function playdate.update()
 	playdate.timer.updateTimers()
 	
 	-- SCREEN UPDATES (only the active screen's update method will run) --
-	openingScreen.update()
-	numPlayersScreen.update()
-	chooseMinigameScreen.update()
+	openingScreen:update()
+	numPlayersScreen:update()
+	chooseMinigameScreen:update()
+	crankaboomScreen:update()
 end

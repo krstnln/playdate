@@ -2,6 +2,7 @@
 chooseMinigameScreenInputHandler = {
 
 	AButtonDown = function()
+		crankaboomScreen:load()
 	end,
 	
 	AButtonHeld = function()
@@ -11,7 +12,7 @@ chooseMinigameScreenInputHandler = {
 	end,
 	
 	BButtonDown = function()
-		numPlayersScreen.load()
+		numPlayersScreen:load()
 	end,
 	
 	BButtonHeld = function()
@@ -21,6 +22,9 @@ chooseMinigameScreenInputHandler = {
 	end,
 	
 	downButtonDown = function()
+		if gameState["minigameIndex"] > 1 then
+			gameState["minigameIndex"] = gameState["minigameIndex"] - 1
+		end
 	end,
 	
 	downButtonUp = function()
@@ -39,6 +43,9 @@ chooseMinigameScreenInputHandler = {
 	end,
 	
 	upButtonDown = function()
+		if gameState["minigameIndex"] < 3 then
+			gameState["minigameIndex"] = gameState["minigameIndex"] + 1
+		end
 	end,
 	
 	upButtonUp = function()
